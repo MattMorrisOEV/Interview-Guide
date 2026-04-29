@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Octopus EV — Candidate Interview Prep Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* OEV brand palette */
+      --oev-navy:      #1a1042;   /* main dark bg */
+      --oev-navy-mid:  #241654;   /* card bg */
+      --oev-navy-light:#2e1f6e;   /* hover/border */
+      --oev-purple:    #7c3aed;   /* secondary accent */
+      --oev-pink:      #ff1dbe;   /* primary accent — OEV hot pink */
+      --oev-pink-soft: #ff80d8;   /* lighter pink for text on dark */
+      --oev-pink-muted:#3d0a2e;   /* very dark pink for tinted boxes */
+      --oev-white:     #ffffff;
+      --oev-off-white: #e8e0f8;   /* muted text on dark */
+      --oev-border:    rgba(255,255,255,0.1);
+
+      /* amber kept for warning boxes */
+      --amber-800: #633806;
+      --amber-700: #854F0B;
+      --amber-100: #FAC775;
+      --amber-50:  #FAEEDA;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 20px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--oev-navy);
+      color: var(--oev-white);
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(140deg, #0d0829 0%, #1a1042 40%, #2d1070 75%, #4a0d6e 100%);
+      border-radius: var(--radius-xl);
+      padding: 3rem 2.5rem 2.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 35%;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,29,190,0.2);
+      color: var(--oev-pink-soft);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 em { font-style: italic; }
+
+    .hero p {
+      color: rgba(255,255,255,0.72);
+      font-size: 15px;
+      line-height: 1.65;
+      max-width: 440px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tagline-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 1.75rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+      font-size: 12px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── EDIT NOTICE ── */
+    .edit-notice {
+      background: var(--oev-navy-mid);
+      border: 1px solid var(--oev-border);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .edit-icon {
+      width: 32px; height: 32px;
+      background: var(--oev-navy);
+      border: 1px solid var(--oev-border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .edit-notice p {
+      font-size: 12.5px;
+      color: var(--oev-off-white);
+      line-height: 1.5;
+    }
+
+    .edit-notice a { color: var(--oev-pink-soft); text-decoration: none; font-weight: 500; }
+
+    /* ── NAV ── */
+    .nav {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--oev-border);
+      background: var(--oev-navy-mid);
+      color: var(--oev-off-white);
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .pill:hover { border-color: var(--oev-pink); color: var(--oev-pink-soft); }
+    .pill.active { background: var(--oev-pink); color: #fff; border-color: var(--oev-pink); }
+
+    /* ── SECTIONS ── */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--oev-white);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--oev-navy-mid);
+      border: 1px solid var(--oev-border);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--oev-pink-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--oev-white);
+    }
+
+    .card p, .card li {
+      font-size: 14.5px;
+      color: var(--oev-off-white);
+      line-height: 1.7;
+    }
+
+    .card ul {
+      padding-left: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    .card li { margin-bottom: 5px; }
+
+    /* ── STATS ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .stat-box {
+      background: rgba(255,29,190,0.1);
+      border: 1px solid rgba(255,29,190,0.2);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--oev-pink-soft);
+      display: block;
+      font-weight: 400;
+    }
+
+    .stat-label {
+      font-size: 11.5px;
+      color: var(--oev-off-white);
+      margin-top: 3px;
+      display: block;
+    }
+
+    /* ── TWO COL ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    /* ── TRAITS ── */
+    .traits-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0.5rem 0;
+      gap: 5px;
+    }
+
+    .trait-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(124,58,237,0.2);
+      border: 1px solid rgba(124,58,237,0.3);
+      color: var(--oev-off-white);
+      font-size: 12.5px;
+      padding: 5px 13px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .trait-dot {
+      width: 6px; height: 6px;
+      background: var(--oev-pink);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── WARN BOX ── */
+    .warn-box {
+      background: var(--amber-50);
+      border: 1px solid var(--amber-100);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .warn-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--amber-700);
+      margin-bottom: 5px;
+    }
+
+    .warn-box p {
+      font-size: 14px;
+      color: var(--amber-800);
+      line-height: 1.65;
+    }
+
+    /* ── PROCESS STEPS ── */
+    .process-step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+    }
+
+    .step-num {
+      background: var(--oev-pink);
+      color: #fff;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-content h4 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--oev-white);
+      margin-bottom: 3px;
+    }
+
+    .step-content p {
+      font-size: 13.5px;
+      color: var(--oev-off-white);
+      line-height: 1.6;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--oev-border);
+      margin: 1.25rem 0;
+    }
+
+    /* ── HIGHLIGHT STRIP ── */
+    .highlight-strip {
+      border-left: 3px solid var(--oev-pink);
+      padding-left: 1rem;
+      margin: 0.75rem 0;
+    }
+
+    .highlight-strip p {
+      font-size: 15px;
+      color: var(--oev-off-white);
+      font-style: italic;
+      line-height: 1.65;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    footer span { color: var(--oev-pink-soft); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .hero { padding: 2rem 1.5rem 2rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .stat-row { grid-template-columns: repeat(3, 1fr); }
+      .two-col { grid-template-columns: 1fr; }
+      .nav { gap: 5px; }
+      .pill { font-size: 12px; padding: 6px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-wrapper">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-badge">Candidate prep guide</div>
+      <h1>Your guide to<br><em>Octopus Electric Vehicles</em></h1>
+      <p>Everything you need to know before your interview. Read this, and you'll walk in with confidence.</p>
+      <div class="tagline-row">
+        <span class="tag">Greener</span>
+        <span class="tag">Fairer</span>
+        <span class="tag">Future</span>
+      </div>
+    </div>
+
+    <!-- EDIT NOTICE -->
+    <div class="edit-notice">
+      <div class="edit-icon">✏️</div>
+      <p>Maintained by the Talent team at OEV. To suggest edits, contact <a href="mailto:matt.morris1@octopusev.com">matt.morris1@octopusev.com</a></p>
+    </div>
+
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="pill active" onclick="showSection('who', this)">Who we are</div>
+      <div class="pill" onclick="showSection('product', this)">What we do</div>
+      <div class="pill" onclick="showSection('culture', this)">Culture & values</div>
+      <div class="pill" onclick="showSection('succeed', this)">Who succeeds here</div>
+      <div class="pill" onclick="showSection('process', this)">Interview process</div>
+      <div class="pill" onclick="showSection('questions', this)">Questions to ask us</div>
+    </nav>
+
+    <!-- ══ WHO WE ARE ══ -->
+    <div id="who" class="section active">
+      <div class="section-title">Who we are</div>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <span class="stat-num">2018</span>
+          <span class="stat-label">Founded</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">40k+</span>
+          <span class="stat-label">Vehicles on the road</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">~3k</span>
+          <span class="stat-label">New vehicles/month</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">The short version</div>
+        <p>Octopus Electric Vehicles launched in 2018 with a simple mission: make switching to electric easy. We're not just a leasing company — we bundle the car, charger, and energy into one seamless deal, backed by technology we build ourselves.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Part of something bigger</div>
+        <h3>Octopus Energy Group</h3>
+        <p>We're part of Octopus Energy Group — one of the fastest-growing energy and technology companies in the world. The Group has been valued at over £4 billion and operates across multiple countries. That means we benefit from significant backing, shared engineering infrastructure, and a group-wide culture of doing things differently.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Why we exist</div>
+        <div class="highlight-strip">
+          <p>"From 2035, you can no longer buy a new petrol or diesel car in the UK. We're building the infrastructure, technology and experience to make that transition seamless for drivers."</p>
+        </div>
+        <p style="margin-top: 0.75rem; font-size: 14.5px; color: var(--oev-off-white); line-height: 1.7;">The EV transition isn't just happening — it's accelerating. We sit at the centre of it, connecting drivers, energy, and technology in a way no one else does.</p>
+      </div>
+    </div>
+
+    <!-- ══ WHAT WE DO ══ -->
+    <div id="product" class="section">
+      <div class="section-title">What we do</div>
+
+      <div class="card">
+        <div class="card-label">Core product</div>
+        <h3>Salary sacrifice EV leasing</h3>
+        <p>Our flagship product lets employees lease an electric vehicle through their employer via salary sacrifice — saving them tax and National Insurance. It's one of the most tax-efficient ways to drive electric in the UK, and we've built it into a seamless, end-to-end experience.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-label">The bundle</div>
+          <ul>
+            <li>Electric car lease</li>
+            <li>Home charger install</li>
+            <li>Green energy tariff</li>
+            <li>All in one monthly payment</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-label">Our customers</div>
+          <ul>
+            <li>UK employers (B2B)</li>
+            <li>Individual drivers (B2C)</li>
+            <li>Fleet operators</li>
+            <li>Growing into Europe</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Technology</div>
+        <h3>We build our own tech</h3>
+        <p>Unlike most leasing companies, we have a substantial in-house engineering team. Our stack is Python with GraphQL on the backend, React with Next.js on the frontend, PostgreSQL and NoSQL databases, all running on AWS. If you're in a tech role, you'll be building real product — not maintaining legacy systems.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Scale & growth</div>
+        <p>We put roughly 3,000 vehicles on the road every month and manage a fleet of over 40,000 vehicles. That's real complexity — financing arrangements, securitisation facilities, high-volume financial data, and customer operations — all running through systems we own and improve.</p>
+      </div>
+    </div>
+
+    <!-- ══ CULTURE ══ -->
+    <div id="culture" class="section">
+      <div class="section-title">Culture & values</div>
+
+      <div class="warn-box">
+        <div class="warn-label">Honest heads-up</div>
+        <p>We're a scale-up, not a corporate. Things move fast and aren't always perfectly structured. If you thrive in ambiguity and want to shape things, you'll love it. If you need everything defined for you, that's worth reflecting on before applying.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">How we work</div>
+        <h3>Autonomy over process</h3>
+        <p>We trust people to get on with it. There isn't a rigid playbook for every situation — you're expected to use good judgement, flag problems early, and take ownership of outcomes. Managers set direction and get out of the way.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Customer obsession</div>
+        <h3>The customer is always in the room</h3>
+        <p>Every team — Tech, Finance, Operations, Commercial — is expected to connect their work to the customer experience. We're not a company that makes decisions in isolation from the people we serve.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Transparency</div>
+        <h3>We say what we think</h3>
+        <p>Octopus culture is unusually direct. Feedback flows both ways. You'll be expected to give honest views — including to people more senior than you — and to receive feedback with openness. Hierarchy exists, but it doesn't dominate.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Mission</div>
+        <h3>The work matters</h3>
+        <p>People here genuinely care about the mission. The EV transition is a real thing, and we're helping make it happen at scale. That's not a line in a slide deck — it shows up in how people talk about their work day to day.</p>
+      </div>
+    </div>
+
+    <!-- ══ WHO SUCCEEDS ══ -->
+    <div id="succeed" class="section">
+      <div class="section-title">Who succeeds here</div>
+
+      <div class="card">
+        <div class="card-label">Traits we consistently see in top performers</div>
+        <div class="traits-cloud">
+          <span class="trait-pill"><span class="trait-dot"></span>Self-starter</span>
+          <span class="trait-pill"><span class="trait-dot"></span>Intellectually curious</span>
+          <span class="trait-pill"><span class="trait-dot"></span>Low ego</span>
+          <span class="trait-pill"><span class="trait-dot"></span>High ownership</span>
+          <span class="trait-pill"><span class="trait-dot"></span>Comfortable with ambiguity</span>
+          <span class="trait-pill"><span class="trait-dot"></span>Mission-driven</span>
+          <span class="trait-pill"><span class="trait-dot"></span>Direct communicator</span>
+          <span class="trait-pill"><span class="trait-dot"></span>Customer-first thinking</span>
+          <span class="trait-pill"><span class="trait-dot"></span>Moves quickly</span>
+          <span class="trait-pill"><span class="trait-dot"></span>Gets stuck in</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">What "ownership" looks like here</div>
+        <p>It's not just completing your tasks. It's flagging when something looks wrong even if it's not your area, thinking about what happens after your work lands, and not waiting to be told what to do when there's a clear problem. People who say "that's not my job" don't last long.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Pace</div>
+        <p>We move fast. Decisions get made quickly and things change. The people who thrive are energised by that, not stressed by it. If you've come from a large corporate with long approval chains, expect a significant change of pace — in a good way.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="warn-box">
+        <div class="warn-label">Who tends not to thrive</div>
+        <p>Those who need a lot of structure and instruction before acting. Those who wait to be told. Those who prioritise politics over output. Those who aren't genuinely interested in the mission. We're not for everyone — and that's fine.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">A note on interviews</div>
+        <p>We're looking for real examples, not polished answers. Be specific about what <em>you</em> did — not "we". Be honest about what went wrong and what you learned. Candidates who try to sound impressive tend to come across worse than those who are just genuine.</p>
+      </div>
+    </div>
+
+    <!-- ══ PROCESS ══ -->
+    <div id="process" class="section">
+      <div class="section-title">Interview process</div>
+
+      <div class="card">
+        <div class="card-label">What to expect — typical stages</div>
+        <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem;">Stages vary by role. Your recruiter will confirm the exact process for your position.</p>
+
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Recruiter screen</h4>
+            <p>30 mins with someone from the Talent team. Covering your background, motivations, salary expectations, and a chance for you to ask questions about the role and company.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Hiring manager interview</h4>
+            <p>A deeper conversation about your experience and approach. Expect competency and values-based questions. Be ready with specific examples using the STAR method.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Task or technical stage</h4>
+            <p>For many roles there'll be a practical element — a case study, technical task, or presentation. Your recruiter will give you full details in advance.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Final conversation</h4>
+            <p>Often with a senior stakeholder. More about fit, ambition, and questions than grilling. A great chance to understand the bigger picture and make sure OEV is right for you too.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Tips for performing well</div>
+        <ul>
+          <li>Use the STAR method: Situation, Task, Action, Result</li>
+          <li>Be specific — "we" is fine for context, but tell us what <em>you</em> did</li>
+          <li>It's okay to say "I don't know" — we value intellectual honesty</li>
+          <li>Come with questions — it shows genuine interest and helps you decide if we're right for you</li>
+          <li>Feedback is available at every stage — just ask your recruiter</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ══ QUESTIONS ══ -->
+    <div id="questions" class="section">
+      <div class="section-title">Questions to ask us</div>
+
+      <div class="card">
+        <div class="card-label">About the role</div>
+        <ul>
+          <li>What does success look like in the first 90 days?</li>
+          <li>What's the biggest challenge the team is working through right now?</li>
+          <li>How did this role come about — is it new or a backfill?</li>
+          <li>Who would I work most closely with day-to-day?</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-label">About culture & growth</div>
+        <ul>
+          <li>How do people typically progress here?</li>
+          <li>What's been the biggest change in the business in the last 12 months?</li>
+          <li>How much autonomy will I have to shape how I work?</li>
+          <li>What do you wish you'd known before joining?</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-label">About the mission</div>
+        <ul>
+          <li>Where do you see OEV in 3 years — product and team?</li>
+          <li>How does the team stay connected to what customers actually experience?</li>
+          <li>How does being part of Octopus Energy Group affect day-to-day work?</li>
+        </ul>
+      </div>
+
+      <div class="warn-box">
+        <div class="warn-label">Questions to avoid</div>
+        <p>Avoid questions you could have googled. If you ask "what does Octopus EV do?" at final stage, it signals you haven't prepared. If in doubt, ask something about the team's experience or the future — those always land well.</p>
+      </div>
+    </div>
+
+    <footer>
+      <p>Made with care by the Talent team &nbsp;·&nbsp; <span>Octopus Electric Vehicles</span> &nbsp;·&nbsp; <a href="mailto:matt.morris1@octopusev.com" style="color: var(--green-400); text-decoration: none;">Get in touch</a></p>
+    </footer>
+
+  </div><!-- /site-wrapper -->
+
+  <script>
+    function showSection(id, el) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      el.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
